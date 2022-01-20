@@ -62,14 +62,22 @@ app.get('/api/animals', (req, res) => {
     res.json(results);
   });
 
-	app.get('/api/animals/:id', (req, res) => {
-		const result = findById(req.params.id, animals);
-		if (result) {
-			res.json(result);
-		} else {
-			res.sendStatus(404);
-		}
-	});
+app.get('/api/animals/:id', (req, res) => {
+	const result = findById(req.params.id, animals);
+	if (result) {
+		res.json(result);
+	} else {
+		res.sendStatus(404);
+	}
+});
+
+
+// POST requests are client requesting server to accept data
+app.post('/api/animals', (req, res) => {
+	// req.body is where our incoming content will be
+	console.log(req.body);
+	res.json(req.body);
+});
 
 //Bind and listen to connections on the specified host (website address) and port (website address but more specific?)      
 app.listen(PORT, () => {
